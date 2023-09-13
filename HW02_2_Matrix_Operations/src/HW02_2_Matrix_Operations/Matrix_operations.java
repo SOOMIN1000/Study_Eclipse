@@ -1,101 +1,107 @@
 package HW02_2_Matrix_Operations;
 /*
- * ÆÄÀÏ¸í: "HW02_2_Matrix_operations"
- * ÇÁ·Î±×·¥ÀÇ¸ñÀû¹×±âº»±â´É: 
- *  -Çà·ÄÀÇ µ¡¼À, –E¼À, °ö¼ÀÀ» ±¸ÇöÇÏ°í Ãâ·ÂÇÏ´Â ÇÁ·Î±×·¥
- * ÇÁ·Î±×·¥ÀÛ¼ºÀÚ: Ãµ¼ö¹Î(2023³â9¿ù9ÀÏ)
- * ÃÖÁ¾Update : 2023³â9¿ù9ÀÏ
+ * íŒŒì¼ëª…: "HW02_2_Matrix_operations"
+ * í”„ë¡œê·¸ëž¨ì˜ëª©ì ë°ê¸°ë³¸ê¸°ëŠ¥: 
+ *  -í–‰ë ¬ì˜ ë§ì…ˆ, Â–Eì…ˆ, ê³±ì…ˆì„ êµ¬í˜„í•˜ê³  ì¶œë ¥í•˜ëŠ” í”„ë¡œê·¸ëž¨
+ * í”„ë¡œê·¸ëž¨ìž‘ì„±ìž: ì²œìˆ˜ë¯¼(2023ë…„9ì›”9ì¼)
+ * ìµœì¢…Update : 2023ë…„9ì›”9ì¼
  * =========================================================
- * ÇÁ·Î±×·¥¼öÁ¤/º¸¿ÏÀÌ·Â
+ * í”„ë¡œê·¸ëž¨ìˆ˜ì •/ë³´ì™„ì´ë ¥
  * =========================================================
- * ÇÁ·Î±×·¥¼öÁ¤/º¸¿Ï		ÀÛ¾÷ÀÚÀÏÀÚ		¼öÁ¤/º¸¿Ï³»¿ë
- * Ãµ¼ö¹Î				2023/09/09	Çà·Ä µ¡¼À,»¬¼À,°ö¼À,Ãâ·Â ±â´É ±¸Çö
+ * í”„ë¡œê·¸ëž¨ìˆ˜ì •/ë³´ì™„		ìž‘ì—…ìžì¼ìž		ìˆ˜ì •/ë³´ì™„ë‚´ìš©
+ * ì²œìˆ˜ë¯¼			2023/09/09	í–‰ë ¬ ë§ì…ˆ,ëº„ì…ˆ,ê³±ì…ˆ,ì¶œë ¥ ê¸°ëŠ¥ êµ¬í˜„
+ * ì²œìˆ˜ë¯¼			2023/09/13      ê° í•¨ìˆ˜ì˜ ì¸ìˆ˜ì—ì„œ í–‰ê³¼ ì—´ì„ ë¹¼ê³  
+ *						í•¨ìˆ˜ ë‚´ì—ì„œ ê³„ì‚°í•˜ëŠ” ê²ƒìœ¼ë¡œ ë°”ê¿ˆ
  * */
 
 public class Matrix_operations {	 
-	public static void printMtrx(String mtrx_name, int n_row, int n_col, double mtrx_data[][])
-	{//Çà·Ä Ãâ·Â
-		System.out.println(mtrx_name+" = "); //Çà·Ä ÀÌ¸§À» ¸ÕÀú Ãâ·Â ÈÄ °³Çà
-		for(int i=0;i<n_row;i++) //[0][0]~[n_row][n_col]±îÁö
+	public static void printMtrx(String mtrx_name, double mtrx_data[][])
+	{//í–‰ë ¬ ì¶œë ¥
+		System.out.println(mtrx_name+" = "); //í–‰ë ¬ ì´ë¦„ì„ ë¨¼ì € ì¶œë ¥ í›„ ê°œí–‰
+		for(int i=0;i<mtrx_data.length;i++) //0í–‰ë¶€í„° ë í–‰ ê¹Œì§€ ë°˜ë³µ
 		{
-			for(int j=0;j<n_col;j++)//¸ÕÀú[0][0]~[0][n_col]±îÁö Ãâ·Â
+			for(int j=0;j<mtrx_data[i].length;j++)//ê° í–‰ì˜ ëê¹Œì§€ ì¶œë ¥
 			{
 				System.out.printf("%5.2f  ",mtrx_data[i][j]);
 			}
-			System.out.println();//°³Çà
+			System.out.println();//ê°œí–‰
 		}
-		System.out.println();//°³Çà
+		System.out.println();//ê°œí–‰
 	}
 	
-	public static double[][] addMtrx(int n_row, int n_col, double mA_data[][], double mB_data[][])
+	public static double[][] addMtrx(double mA_data[][], double mB_data[][])
 	{
-		double[][] Mtrx_c;//doubleÇü 2Â÷¿ø¹è¿­ Mtrx_c »ý¼º
-		Mtrx_c=new double[n_row][n_col];//Å©±â¸¦ [n_row][n_col]·Î ¼³Á¤
+		double[][] Mtrx_c;//doubleí˜• 2ì°¨ì›ë°°ì—´ Mtrx_c ìƒì„±
+		int n_row=mA_data.length;
+		int n_col=mA_data[0].length;
+		Mtrx_c=new double[n_row][n_col];//í¬ê¸°ë¥¼ [n_row][n_col]ë¡œ ì„¤ì •
 		for(int i=0;i<n_row;i++) {//
 			for(int j=0;j<n_col;j++)
 			{
-				Mtrx_c[i][j]=mA_data[i][j]+mB_data[i][j];//°¢ À§Ä¡ÀÇ ¿ø¼Ò¸¦ ´õÇÑ °ªÀ» Mtrx_c¿¡ ÀúÀå
+				Mtrx_c[i][j]=mA_data[i][j]+mB_data[i][j];//ê° ìœ„ì¹˜ì˜ ì›ì†Œë¥¼ ë”í•œ ê°’ì„ Mtrx_cì— ì €ìž¥
 			}
 		}
 		
-		return Mtrx_c; //mA¿Í mBÇà·ÄÀ» ´õÇÑ Mtrx_c¸¦ ¹ÝÈ¯
+		return Mtrx_c; //mAì™€ mBí–‰ë ¬ì„ ë”í•œ Mtrx_cë¥¼ ë°˜í™˜
 	}
+		
 	
-	public static double[][] subMtrx(int n_row, int n_col, double mA_data[][], double mB_data[][])
+	public static double[][] subMtrx(double mA_data[][], double mB_data[][])
 	{
-		double[][] Mtrx_c; //doubleÇü 2Â÷¿ø ¹è¿­ Mtrx_c »ý¼º
-		Mtrx_c=new double[n_row][n_col]; //Å©±â¸¦ [n_row][n_col]·Î ¼³Á¤
+		double[][] Mtrx_c; //doubleí˜• 2ì°¨ì› ë°°ì—´ Mtrx_c ìƒì„±
+		int n_row=mA_data.length; //í–‰ê³¼ ì—´ì˜ í¬ê¸°ê°€ mAì˜ í–‰ê³¼ ì—´ì˜ í¬ê¸°ì™€ ê°™ë‹¤.
+		int n_col=mA_data[0].length;
+		Mtrx_c=new double[n_row][n_col]; //í¬ê¸°ë¥¼ [n_row][n_col]ë¡œ ì„¤ì •
 		for(int i=0;i<n_row;i++) {
 			for(int j=0;j<n_col;j++)
 			{
-				Mtrx_c[i][j]=mA_data[i][j]-mB_data[i][j];//mAÀÇ °¢ À§Ä¡¿Í µ¿ÀÏÇÑ À§Ä¡ ¿ø¼Ò¿¡¼­ mBÀÇ ¿ø¼Ò¸¦ »­
+				Mtrx_c[i][j]=mA_data[i][j]-mB_data[i][j];//mAì˜ ê° ìœ„ì¹˜ì™€ ë™ì¼í•œ ìœ„ì¹˜ ì›ì†Œì—ì„œ mBì˜ ì›ì†Œë¥¼ ëºŒ
 			}
 		}
 		
-		return Mtrx_c; //mA-mBÇÑ Mtrx_cÇà·ÄÀ» ¹ÝÈ¯
+		return Mtrx_c; //mA-mBí•œ Mtrx_cí–‰ë ¬ì„ ë°˜í™˜
 	}
 	
-	public static double[][] mulMtrx(int nA_row, int nA_col, int nB_row, int nB_col, double mA_data[][], double mB_data[][])
+	public static double[][] mulMtrx(double mA_data[][], double mB_data[][])
 	{
-		double[][] Mtrx_c; //doubleÇü 2Â÷¿ø ¹è¿­ Mtrx_c¸¦ »ý¼º
-		Mtrx_c=new double[nA_row][nB_col];//nA_row*nA_colÇà·Ä°ú nB_row*nB_col Çà·ÄÀ» 
-		                                  //°öÇÑ Çà·ÄÀÇ Å©±â´Â nA_row*nB_colÀÓ
-		for (int r=0; r<nA_row; r++) //Mtrx_cÀÇ °¢ ¿ø¼Ò¸¦ 0Çà~nA_row-1Çà ¼ø¼­·Î Â÷·Ê´ë·Î ±¸ÇÒ °ÍÀÓ
+		double[][] Mtrx_c; //doubleí˜• 2ì°¨ì› ë°°ì—´ Mtrx_cë¥¼ ìƒì„±
+		int n_row=mA_data.length; //í–‰ì€ mA,ì—´ì€ mBì˜ í¬ê¸°ì™€ ê°™ë‹¤.
+		int n_col=mB_data[0].length;
+		Mtrx_c=new double[n_row][n_col];//mA_row*mA_colí–‰ë ¬ê³¼ mB_row*mB_col í–‰ë ¬ì„ 
+		                                  //ê³±í•œ í–‰ë ¬ì˜ í¬ê¸°ëŠ” mA_row*mB_colìž„
+		for (int r=0; r<n_row; r++) //Mtrx_cì˜ ê° ì›ì†Œë¥¼ 0í–‰~nA_row-1í–‰ ìˆœì„œë¡œ ì°¨ë¡€ëŒ€ë¡œ êµ¬í•  ê²ƒìž„
 		{
-			for (int c=0; c<nB_col; c++) 
+			for (int c=0; c<n_col; c++) 
 			{
-				Mtrx_c[r][c] = 0; //ÇØ´ç À§Ä¡ÀÇ ¿ø¼Ò¸¦ ¸ÕÀú 0À¸·Î ¸¸µë
-				for (int k=0; k<nA_col; k++) 
+				Mtrx_c[r][c] = 0; //í•´ë‹¹ ìœ„ì¹˜ì˜ ì›ì†Œë¥¼ ë¨¼ì € 0ìœ¼ë¡œ ë§Œë“¬
+				for (int k=0; k<mA_data[0].length; k++) 
 				{
-					//Çà·ÄÀÇ °ö¼À ½Ä¿¡ µû¶ó¼­ °è»ê
+					//í–‰ë ¬ì˜ ê³±ì…ˆ ì‹ì— ë”°ë¼ì„œ ê³„ì‚°
 					Mtrx_c[r][c] += mA_data[r][k] * mB_data[k][c];
 				}
 			}
 		}
-		return Mtrx_c; //mA¿Í mBÇà·ÄÀ» °öÇÑ Mtrx_cÇà·ÄÀ» ¹ÝÈ¯
+		return Mtrx_c; //mAì™€ mBí–‰ë ¬ì„ ê³±í•œ Mtrx_cí–‰ë ¬ì„ ë°˜í™˜
 	}
 	
 	public static void main(String[] args)
 	{
-	int nA_row = 3, nA_col = 5;
-	int nB_row = 3, nB_col = 5;
-	int nC_row = 5, nC_col = 3;
 	double mA[][] = {{1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}};
 	double mB[][] = {{1, 0, 0, 0, 0}, {0, 1, 0, 0, 0}, {0, 0, 1, 0, 0}};
 	double mAddAB[][];
 	double mSubAB[][];
-	printMtrx("mA", nA_row, nA_col, mA);
-	printMtrx("mB", nB_row, nB_col, mB);
-	mAddAB = addMtrx(nA_row, nA_col, mA, mB);
-	printMtrx("mAddAB", nA_row, nA_col, mAddAB);
-	mSubAB = subMtrx(nA_row, nA_col, mA, mB);
-	printMtrx("mSubAB", nA_row, nA_col, mSubAB);
+	printMtrx("mA",  mA);
+	printMtrx("mB",  mB);
+	mAddAB = addMtrx( mA, mB);
+	printMtrx("mAddAB",  mAddAB);
+	mSubAB = subMtrx(mA, mB);
+	printMtrx("mSubAB", mSubAB);
 	double mC[][] = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}, {0, 0, 0}, {0, 0, 0}};
 	double mMulAC[][];
-	printMtrx("mA", nA_row, nA_col, mA);
-	printMtrx("mC", nC_row, nC_col, mC);
-	mMulAC = mulMtrx(nA_row, nA_col, nC_row, nC_col, mA, mC);
-	printMtrx("mMulAC", nA_row, nC_col, mMulAC);
+	printMtrx("mA", mA);
+	printMtrx("mC",  mC);
+	mMulAC = mulMtrx(mA, mC);
+	printMtrx("mMulAC", mMulAC);
 	}
 
 }
