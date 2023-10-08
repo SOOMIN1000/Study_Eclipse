@@ -1,4 +1,4 @@
 
-public interface TeacherActivity {//Teacher°´Ã¼ÀÇ interface
+public interface TeacherActivity {//Teacher ê°ì²´ì˜ interface
 	public abstract void teach();
 }
