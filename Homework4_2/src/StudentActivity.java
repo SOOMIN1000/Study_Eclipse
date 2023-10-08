@@ -1,4 +1,4 @@
 
-public interface StudentActivity { //student°´Ã¼ÀÇ interface
+public interface StudentActivity { //student ê°ì²´ì˜ interface
 	public abstract void study();
 }
